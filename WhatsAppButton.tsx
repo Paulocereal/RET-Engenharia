@@ -1,7 +1,7 @@
 import { MessageCircle } from 'lucide-react';
 
 export default function WhatsAppButton() {
-  const phone = "5511999999999"; // COLOQUE SEU TELEFONE AQUI (DDI + DDD + NÚMERO)
+  const phone = "5511999999999"; // COLOQUE SEU TELEFONE AQUI (553191979264)
   const message = encodeURIComponent("Olá! Gostaria de fazer um orçamento com a RET-Engenharia.");
 
   return (
