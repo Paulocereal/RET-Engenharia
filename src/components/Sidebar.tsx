@@ -1,5 +1,3 @@
-import React from 'react';
-
 const menuItems = [
   {
     category: "Laudos Técnicos",
@@ -31,7 +29,6 @@ const menuItems = [
 export function Sidebar() {
   return (
     <aside className="w-[320px] h-screen bg-[#f8faff] p-8 overflow-y-auto border-r border-[#eef2f6] shadow-sm font-sans">
-      {/* Container do Logotipo/Nome com estilo do Icon Container */}
       <div className="flex items-center justify-center w-[50px] h-[50px] bg-[#2563eb] rounded-[10px] mb-6 shadow-md">
         <span className="text-white font-bold text-xl">RE</span>
       </div>
