@@ -1,4 +1,4 @@
-import { Building2, ClipboardCheck, Hammer, LineChart, Shield, Users, Wind, Flame, HardHat, Gauge, Recycle, PlayCircle, Car, Fan, Truck, FileText } from 'lucide-react';
+  import { Building2, ClipboardCheck, Hammer, LineChart, Shield, Users, Wind, Flame, HardHat, Gauge, Recycle, PlayCircle, Car, Fan, Truck, FileText } from 'lucide-react';
 
 const services = [
   {
@@ -120,10 +120,10 @@ export default function Services() {
               <a 
                 href={service.href} 
                 key={index} 
-                className="block no-underline group"
+                className="block no-underline group h-full"
               >
-                <div className="bg-gradient-to-br from-slate-50 to-blue-50 p-8 rounded-xl hover:shadow-xl transition-all duration-300 border border-slate-200 hover:border-blue-300 h-full">
-                  <div className="bg-blue-600 w-14 h-14 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                <div className="bg-gradient-to-br from-slate-50 to-blue-50 p-8 rounded-xl hover:shadow-xl transition-all duration-300 border border-slate-200 hover:border-blue-300 h-full flex flex-col uppercase-none">
+                  <div className="bg-blue-600 w-14 h-14 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg shadow-blue-200">
                     <Icon className="text-white" size={28} />
                   </div>
                   <h3 className="text-xl font-bold text-slate-900 mb-3">{service.title}</h3>
