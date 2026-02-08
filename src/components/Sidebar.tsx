@@ -2,27 +2,35 @@ const menuItems = [
   {
     category: "Laudos Técnicos",
     items: [
-      "NR-12: Segurança em Máquinas",
-      "PMOC: Ar Condicionado",
-      "Rede GLP: Instalações de Gás",
-      "Laudo Cautelar",
-      "Andaimes: Segurança",
-      "NR-13: Vasos e Caldeiras",
-      "Máquinas Pesadas",
-      "Perícia Judicial/Extrajudicial",
-      "Playground e Brinquedos",
-      "Veicular: Reclassificação",
-      "Sistemas de Exaustão",
-      "NR-11: Movimentação de Carga"
+      { name: "NR-12: Segurança em Máquinas", href: "/nr-12.html" },
+      { name: "PMOC: Ar Condicionado", href: "/pmoc.html" },
+      { name: "Rede GLP: Instalações de Gás", href: "/rede-glp.html" },
+      { name: "Laudo Cautelar", href: "/laudo-cautelar.html" },
+      { name: "Andaimes: Segurança", href: "/andaimes.html" },
+      { name: "NR-13: Vasos e Caldeiras", href: "/nr-13.html" },
+      { name: "Máquinas Pesadas", href: "/maquinas-pesadas.html" },
+      { name: "Perícia Judicial/Extrajudicial", href: "/pericia.html" },
+      { name: "Playground e Brinquedos", href: "/playground.html" },
+      { name: "Veicular: Reclassificação", href: "/veicular.html" },
+      { name: "Sistemas de Exaustão", href: "/exaustao.html" },
+      { name: "NR-11: Movimentação de Carga", href: "/nr-11.html" }
     ]
   },
   {
     category: "Projetos",
-    items: ["Climatização (HVAC)", "Linha de Vida", "Projetos Mecânicos", "PPCI"]
+    items: [
+      { name: "Climatização (HVAC)", href: "/climatizacao.html" },
+      { name: "Linha de Vida", href: "/linha-de-vida.html" },
+      { name: "Projetos Mecânicos", href: "/projetos-mecanicos.html" },
+      { name: "PPCI", href: "/ppci.html" }
+    ]
   },
   {
     category: "Consultoria e Treinamentos",
-    items: ["Viabilidade Técnica", "Treinamentos NR-12"]
+    items: [
+      { name: "Viabilidade Técnica", href: "/viabilidade.html" },
+      { name: "Treinamentos NR-12", href: "/treinamentos-nr12.html" }
+    ]
   }
 ];
 
@@ -46,10 +54,10 @@ export function Sidebar() {
             {section.items.map((item, itemIdx) => (
               <li key={itemIdx}>
                 <a 
-                  href="#" 
+                  href={item.href} 
                   className="text-[#475569] text-[16px] leading-relaxed block py-2 px-3 rounded-lg transition-all duration-200 hover:bg-white hover:text-[#2563eb] hover:translate-x-1 hover:shadow-sm border border-transparent hover:border-[#eef2f6]"
                 >
-                  {item}
+                  {item.name}
                 </a>
               </li>
             ))}
