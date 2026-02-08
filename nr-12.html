@@ -14,21 +14,16 @@
 
         body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; color: var(--texto-ret); background: white; line-height: 1.6; }
         
-        /* Cabeçalho */
         header { padding: 20px; border-bottom: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; max-width: 1100px; margin: 0 auto; }
         .logo { font-weight: bold; color: var(--dark-ret); font-size: 1.4rem; text-decoration: none; }
         .back-link { text-decoration: none; color: var(--azul-ret); font-weight: 500; }
         
-        /* Seção de Título */
         .service-header { background: var(--bg-light); padding: 60px 20px; text-align: center; }
         .service-header h1 { color: var(--dark-ret); font-size: 2.5rem; margin: 0 0 15px 0; }
-        .service-header p { font-size: 1.2rem; max-width: 700px; margin: 0 auto; color: var(--texto-ret); }
         
-        /* Conteúdo Principal */
         .container { max-width: 800px; margin: 40px auto; padding: 0 20px; }
         h2 { color: var(--dark-ret); border-left: 4px solid var(--azul-ret); padding-left: 15px; margin-top: 40px; }
         
-        /* Estilo da Imagem */
         .img-container { text-align: center; margin: 35px 0; }
         .img-container img { 
             max-width: 100%; 
@@ -38,23 +33,17 @@
         }
         .img-caption { color: #64748b; font-size: 0.9rem; margin-top: 12px; font-style: italic; }
 
-        /* Caixa de Destaque */
         .info-box { 
             background: white; border: 1px solid #eef2f6; border-radius: 16px; padding: 30px; 
             box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05); margin: 30px 0;
         }
         .info-box h3 { margin-top: 0; color: var(--azul-ret); }
-        .info-box ul { padding-left: 20px; }
-        .info-box li { margin-bottom: 10px; }
 
-        /* Botão de Contato */
         .cta-section { text-align: center; margin: 60px 0; }
         .btn-whatsapp {
             display: inline-block; background: #25d366; color: white; padding: 18px 35px; 
-            border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 1.1rem;
-            transition: transform 0.3s ease;
+            border-radius: 50px; text-decoration: none; font-weight: bold;
         }
-        .btn-whatsapp:hover { transform: scale(1.05); box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2); }
 
         footer { text-align: center; padding: 40px; font-size: 0.9rem; border-top: 1px solid #eee; color: #94a3b8; }
     </style>
@@ -62,8 +51,8 @@
 <body>
 
     <header>
-        <a href="index.html" class="logo">RET Engenharia</a>
-        <a href="index.html" class="back-link">← Voltar para Início</a>
+        <a href="/" class="logo">RET Engenharia</a>
+        <a href="/" class="back-link">← Voltar para Início</a>
     </header>
 
     <section class="service-header">
@@ -73,36 +62,31 @@
 
     <main class="container">
         <h2>O que é a NR-12?</h2>
-        <p>A Norma Regulamentadora 12 define referências técnicas, princípios fundamentais e medidas de proteção para garantir a saúde e a integridade física dos trabalhadores que interagem com máquinas e equipamentos.</p>
+        <p>A Norma Regulamentadora 12 define referências técnicas, princípios fundamentais e medidas de proteção para garantir a saúde e a integridade física dos trabalhadores.</p>
 
         <div class="img-container">
-            <img src="/inspecao.jpg" alt="Inspeção técnica de máquinas NR-12">
-            <p class="img-caption">Análise técnica detalhada para adequação de sistemas de segurança e emissão de laudo.</p>
+            <img src="/inspecao.jpg" alt="Inspeção técnica NR-12">
+            <p class="img-caption">Realização de análise técnica para laudo de conformidade.</p>
         </div>
 
         <div class="info-box">
             <h3>Nossa Solução em NR-12</h3>
             <ul>
-                <li><strong>Inventário Completo:</strong> Catalogação detalhada de todas as máquinas da planta.</li>
-                <li><strong>Análise de Risco (HRN):</strong> Identificação de perigos e categorização de riscos.</li>
-                <li><strong>Laudo de Validação:</strong> Emissão de documento técnico com ART por engenheiros especializados.</li>
-                <li><strong>Plano de Adequação:</strong> Cronograma para implementação de proteções físicas e sistemas de segurança.</li>
+                <li><strong>Inventário Completo:</strong> Catalogação detalhada de máquinas.</li>
+                <li><strong>Análise de Risco (HRN):</strong> Identificação de perigos.</li>
+                <li><strong>Laudo de Validação:</strong> Documento técnico com ART.</li>
             </ul>
         </div>
-
-        <h2>Por que é obrigatório?</h2>
-        <p>Além de evitar multas pesadas e interdições pelo Ministério do Trabalho, a correta adequação à NR-12 reduz drasticamente o risco de acidentes, aumenta a eficiência operacional e protege juridicamente a empresa.</p>
         
         <div class="cta-section">
-            <p>Precisa de um orçamento para sua empresa?</p>
-            <a href="https://wa.me/5511999999999?text=Olá! Gostaria de um orçamento sobre NR-12" class="btn-whatsapp" target="_blank">
+            <a href="https://wa.me/5511999999999" class="btn-whatsapp" target="_blank">
                 Falar com Engenheiro no WhatsApp
             </a>
         </div>
     </main>
 
     <footer>
-        &copy; 2026 RET Engenharia - Soluções em Engenharia Mecânica e Segurança.
+        &copy; 2026 RET Engenharia.
     </footer>
 
 </body>
