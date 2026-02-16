@@ -7,7 +7,8 @@ import {
 } from 'lucide-react';
 import Services from './components/Services';
 import ContentArea from './components/ContentArea';
-import WhatsAppButton from './components/WhatsAppButton';
+// CORREÇÃO AQUI: Removi o /components/ porque o arquivo está na pasta src
+import WhatsAppButton from './WhatsAppButton'; 
 
 function App() {
   const [activeService, setActiveService] = useState('home');
