@@ -68,16 +68,16 @@ function App() {
               <div className="relative z-10 flex flex-col items-center">
                 {/* Tentativa de carregar logo-ret.png primeiro */}
                 <img 
-                  src="logo-ret.png" 
-                  alt="RET Engenharia" 
-                  className="max-w-xl md:max-w-2xl w-full h-auto drop-shadow-2xl mb-8"
-                  onError={(e) => {
-                    // Se a logo-ret falhar, ele tenta carregar a inspecao.jpg automaticamente
-                    const target = e.currentTarget;
-                    if (!target.src.includes('inspecao.jpg')) {
-                      target.src = 'inspecao.jpg';
-                    }
-                  }}
+  src="./logo-ret.png" 
+  alt="RET Engenharia" 
+  className="max-w-xl md:max-w-2xl w-full h-auto drop-shadow-2xl mb-8"
+  onError={(e) => {
+    const target = e.currentTarget;
+    // Tenta caminhos alternativos se o primeiro falhar
+    if (!target.src.includes('inspecao.jpg')) {
+      target.src = './inspecao.jpg';
+    }
+  }}
                 />
                 
                 <div className="text-center">
