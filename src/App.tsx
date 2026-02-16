@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { 
-  Home, Building2, HardHat, Wind, Droplets, 
-  Construction, Ruler, Hammer, Car, Fan, 
-  Flame, Briefcase, Microscope, ClipboardCheck,
-  ChevronRight, Lightbulb
+  Home, Building2, ShieldCheck, Wind, Flame, 
+  ClipboardCheck, Construction, Gauge, Hammer, 
+  Microscope, PlayCircle, Car, Fan, Truck, 
+  Snowflake, Anchor, FireExtinguisher
 } from 'lucide-react';
 import Services from './components/Services';
 import ContentArea from './components/ContentArea';
@@ -63,28 +63,53 @@ function App() {
       <main className="flex-1 ml-64 min-h-screen">
         {activeService === 'home' ? (
           <div className="animate-in fade-in duration-700">
-            {/* Hero Section com Logo 3D */}
-            <section className="relative w-full py-20 px-8 flex flex-col items-center justify-center bg-white border-b border-slate-100">
-              <div className="absolute inset-0 opacity-[0.02] pointer-events-none" 
-                   style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', backgroundSize: '30px 30px' }}>
-              </div>
-              
+            {/* Hero Section com Imagem de Inspeção */}
+            <section className="relative w-full py-16 px-8 flex flex-col items-center justify-center bg-white border-b border-slate-100">
               <div className="relative z-10 flex flex-col items-center">
-                <img 
-                  src="logo-ret.png" 
-                  alt="RET Engenharia Logo" 
-                  className="max-w-2xl w-full h-auto drop-shadow-2xl animate-in zoom-in duration-1000"
-                  onError={(e) => {
-                    e.currentTarget.src = "https://raw.githubusercontent.com/PauloCereal/RET-Engenharia/main/public/logo-ret.png";
-                  }}
-                />
+                <div className="w-full max-w-3xl overflow-hidden rounded-2xl shadow-2xl mb-10">
+                  <img 
+                    src="inspecao.jpg" 
+                    alt="Inspeção RET Engenharia" 
+                    className="w-full h-auto object-cover animate-in zoom-in duration-1000"
+                    onError={(e) => {
+                      e.currentTarget.src = "https://raw.githubusercontent.com/PauloCereal/RET-Engenharia/main/public/inspecao.jpg";
+                    }}
+                  />
+                </div>
                 
-                <div className="mt-8 text-center">
+                <div className="text-center">
                   <h2 className="text-3xl md:text-5xl font-extrabold text-slate-800 tracking-tight">
-                    Engenharia de <span className="text-blue-600">Alta Performance</span>
+                    RET <span className="text-blue-600">Engenharia</span>
                   </h2>
-                  <p className="mt-4 text-slate-500 max-w-2xl text-lg">
-                    Soluções técnicas especializadas em estruturas, segurança do trabalho e projetos mecânicos com rigor técnico e inovação.
+                  <p className="mt-4 text-slate-500 max-w-2xl text-lg mx-auto">
+                    Especialistas em laudos técnicos, inspeções de segurança e soluções de engenharia de alta precisão.
                   </p>
                   <div className="w-20 h-1.5 bg-blue-600 mx-auto mt-8 rounded-full shadow-lg shadow-blue-500/40"></div>
                 </div>
+              </div>
+            </section>
+
+            {/* Seção de Cards de Serviços */}
+            <section className="p-8 md:p-12">
+              <div className="max-w-7xl mx-auto">
+                <div className="text-center mb-12">
+                  <span className="text-blue-600 font-bold uppercase tracking-widest text-sm">Nossas Especialidades</span>
+                  <h3 className="text-3xl font-black text-slate-900 mt-2">Soluções Completas</h3>
+                </div>
+                <Services onNavigate={setActiveService} />
+              </div>
+            </section>
+          </div>
+        ) : (
+          <div className="p-8">
+            <ContentArea activeId={activeService} />
+          </div>
+        )}
+      </main>
+
+      <WhatsAppButton />
+    </div>
+  );
+}
+
+export default App;
