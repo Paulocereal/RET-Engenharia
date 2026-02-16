@@ -44,10 +44,10 @@ export function Sidebar({ onNavigate }: SidebarProps) {
           const Icon = item.icon;
           return (
             <button
-              key={item.id}
-              onClick={() => onNavigate(item.id)}
-              className="flex flex-col items-center justify-center aspect-square p-2 rounded-xl bg-slate-800/50 border border-slate-700 hover:bg-blue-600 hover:border-blue-400 transition-all duration-300 group"
-            >
+  key={item.id}
+  onClick={() => onNavigate(item.id)}
+  className="flex flex-col items-center justify-center aspect-square p-3 rounded-xl bg-slate-800/50 border border-slate-700 hover:bg-blue-600 hover:border-blue-400 transition-all duration-300 group shadow-sm hover:shadow-lg hover:shadow-blue-500/50"
+>
               <Icon className="mb-1 text-blue-400 group-hover:text-white transition-colors" size={20} />
               <span className="text-[9px] font-bold uppercase text-center group-hover:text-white leading-tight">
                 {item.name}
