@@ -21,7 +21,7 @@
           onError={(e) => {
             const target = e.currentTarget;
             if (target.src.indexOf('./logo-ret.png') === -1) {
-              target.src = './logo-ret.png';
+              target.src = './inspecao.jpg';
             }
           }}
         />
