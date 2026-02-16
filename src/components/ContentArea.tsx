@@ -4,9 +4,9 @@ interface ContentAreaProps {
   activeId: string;
 }
 
-export const ContentArea: React.FC<ContentAreaProps> = ({ activeId }) => {
+const ContentArea: React.FC<ContentAreaProps> = ({ activeId }) => {
   const servicesData: Record<string, any> = {
-    'projetos-estruturais': {
+    'estruturas': {
       title: "Projetos Estruturais",
       description: "Cálculo e detalhamento de estruturas em concreto armado, aço e alvenaria estrutural, garantindo a estabilidade e segurança da sua edificação.",
       items: ["Projetos Residenciais e Comerciais", "Reforço Estrutural", "Dimensionamento de Fundações", "ART de Projeto"]
@@ -21,12 +21,12 @@ export const ContentArea: React.FC<ContentAreaProps> = ({ activeId }) => {
       description: "Plano de Manutenção, Operação e Controle conforme a Lei 13.589/18, garantindo a qualidade do ar e a eficiência dos sistemas de climatização.",
       items: ["Responsabilidade Técnica por Engenheiro", "Cronograma de Manutenção", "Laudo de Qualidade do Ar", "Redução de Custos Energéticos"]
     },
-    'rede-glp': {
+    'gas-glp': {
       title: "Rede GLP: Instalações de Gás",
       description: "Projetos e inspeções em centrais e redes de distribuição de Gás Liquefeito de Petróleo, assegurando a estanqueidade do sistema.",
       items: ["Teste de Estanqueidade com Laudo", "Projeto de Central de Gás", "Manutenção Preventiva", "ART de Instalação"]
     },
-    'laudo-cautelar': {
+    'cautelar': {
       title: "Laudo Cautelar de Vizinhança",
       description: "Registro detalhado do estado de conservação de imóveis vizinhos antes do início de obras, prevenindo litígios e garantindo segurança jurídica.",
       items: ["Vistoria Fotográfica", "Mapeamento de Patologias", "Relatório Técnico Consolidado", "Segurança em Obras"]
@@ -41,7 +41,7 @@ export const ContentArea: React.FC<ContentAreaProps> = ({ activeId }) => {
       description: "Inspeção periódica de segurança em vasos de pressão, caldeiras e tubulações para prevenir acidentes graves.",
       items: ["Exame Ultrassônico", "Teste Hidrostático", "Abertura de Prontuário", "Relatório de Inspeção"]
     },
-    'maquinas-pesadas': {
+    'pesados': {
       title: "Máquinas Pesadas",
       description: "Inspeção técnica e laudos de integridade para máquinas de grande porte, como escavadeiras, guindastes e retroescavadeiras.",
       items: ["Checklist de Segurança", "Verificação Hidráulica", "Laudo de Estabilidade", "Plano de Manutenção"]
@@ -51,7 +51,7 @@ export const ContentArea: React.FC<ContentAreaProps> = ({ activeId }) => {
       description: "Atuação como perito ou assistente técnico em processos que envolvam engenharia mecânica e patologias construtivas.",
       items: ["Laudos Periciais", "Quesitos Técnicos", "Assistência em Processos", "Avaliação de Danos"]
     },
-    'playground': {
+    'kids': {
       title: "Playground e Brinquedos",
       description: "Inspeção de segurança em parques infantis de condomínios e escolas, seguindo as normas da ABNT para evitar acidentes com crianças.",
       items: ["Inspeção de Integridade", "Avaliação de Amortecimento", "Relatório de Conformidade", "Certificação de Segurança"]
@@ -71,12 +71,12 @@ export const ContentArea: React.FC<ContentAreaProps> = ({ activeId }) => {
       description: "Inspeção em equipamentos de levantamento e transporte, como empilhadeiras, pontes rolantes e elevadores.",
       items: ["Teste de Carga", "Certificação de Cabos de Aço", "Checklist de Operação", "Laudo de Segurança"]
     },
-    'climatizacao': {
+    'hvac': {
       title: "Climatização (HVAC)",
       description: "Soluções completas para climatização de grandes áreas, com foco em conforto térmico e eficiência operacional.",
       items: ["Projetos de Ar Central", "Ventilação Forçada", "Eficiência Térmica", "Cálculo de Carga Térmica"]
     },
-    'linha-de-vida': {
+    'l-vida': {
       title: "Linha de Vida",
       description: "Projeto e instalação de pontos de ancoragem e linhas de vida para trabalho em altura, conforme NR-35.",
       items: ["Projeto de Ancoragem", "Teste de Tração", "Dimensionamento de Materiais", "ART de Instalação"]
@@ -116,10 +116,12 @@ export const ContentArea: React.FC<ContentAreaProps> = ({ activeId }) => {
         </ul>
       </div>
       <div className="text-center">
-        <a href="https://wa.me/5511999999999" target="_blank" className="bg-[#25d366] text-white px-10 py-4 rounded-full font-bold text-lg shadow-lg hover:scale-105 transition-transform inline-block">
+        <a href="https://wa.me/5511999999999" target="_blank" rel="noopener noreferrer" className="bg-[#25d366] text-white px-10 py-4 rounded-full font-bold text-lg shadow-lg hover:scale-105 transition-transform inline-block">
           Solicitar Orçamento no WhatsApp
         </a>
       </div>
     </div>
   );
 };
+
+export default ContentArea;
