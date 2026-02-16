@@ -7,8 +7,8 @@ import {
 } from 'lucide-react';
 import Services from './components/Services';
 import ContentArea from './components/ContentArea';
-// CORREÇÃO AQUI: Removi o /components/ porque o arquivo está na pasta src
-import WhatsAppButton from './WhatsAppButton'; 
+// CORREÇÃO FINAL: Como o arquivo está na raiz (fora da src), o caminho é este:
+import WhatsAppButton from '../WhatsAppButton'; 
 
 function App() {
   const [activeService, setActiveService] = useState('home');
@@ -35,6 +35,7 @@ function App() {
 
   return (
     <div className="flex min-h-screen bg-slate-50 font-sans">
+      {/* Sidebar Lateral */}
       <aside className="fixed inset-y-0 left-0 w-64 bg-[#0f172a] text-white shadow-2xl z-50 overflow-y-auto">
         <div className="p-6 border-b border-slate-700">
           <h1 className="text-xl font-bold tracking-tighter text-blue-400">RET ENGENHARIA</h1>
@@ -55,10 +56,12 @@ function App() {
         </nav>
       </aside>
 
+      {/* Área Principal */}
       <main className="flex-1 ml-64 min-h-screen">
         {activeService === 'home' ? (
           <div className="animate-in fade-in duration-700">
             <section className="relative w-full py-16 px-8 flex flex-col items-center justify-center bg-white border-b border-slate-100">
+              {/* Logo Centralizada */}
               <img 
                 src="./logo-ret.png" 
                 alt="RET Engenharia" 
@@ -72,14 +75,19 @@ function App() {
                 <div className="w-20 h-1.5 bg-blue-600 mx-auto mt-6 rounded-full"></div>
               </div>
             </section>
+            
             <section className="p-8">
               <Services onNavigate={setActiveService} />
             </section>
           </div>
         ) : (
-          <ContentArea activeId={activeService} />
+          <div className="p-8">
+            <ContentArea activeId={activeService} />
+          </div>
         )}
       </main>
+
+      {/* O Botão agora vai ser encontrado pelo sistema */}
       <WhatsAppButton />
     </div>
   );
