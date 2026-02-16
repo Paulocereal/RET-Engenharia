@@ -3,7 +3,7 @@ import {
   Home, Building2, ShieldCheck, Wind, Flame, 
   ClipboardCheck, Construction, Gauge, Hammer, 
   Microscope, PlayCircle, Car, Fan, Truck, 
-  Snowflake, Anchor, FireExtinguisher, PlayCircle as KidsIcon
+  Snowflake, Anchor, FireExtinguisher
 } from 'lucide-react';
 import Services from './components/Services';
 import ContentArea from './components/ContentArea';
@@ -34,85 +34,51 @@ function App() {
 
   return (
     <div className="flex min-h-screen bg-slate-50 font-sans">
-      {/* Sidebar Lateral */}
       <aside className="fixed inset-y-0 left-0 w-64 bg-[#0f172a] text-white shadow-2xl z-50 overflow-y-auto">
         <div className="p-6 border-b border-slate-700">
           <h1 className="text-xl font-bold tracking-tighter text-blue-400">RET ENGENHARIA</h1>
-          <p className="text-[10px] text-slate-400 uppercase tracking-widest mt-1">Menu Técnico</p>
         </div>
-        
         <nav className="p-4 space-y-1">
           {menuItems.map((item) => (
             <button
               key={item.id}
               onClick={() => setActiveService(item.id)}
-              className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 group ${
-                activeService === item.id 
-                ? 'bg-blue-600 text-white shadow-lg shadow-blue-900/20' 
-                : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+              className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
+                activeService === item.id ? 'bg-blue-600 text-white' : 'text-slate-400 hover:bg-slate-800'
               }`}
             >
-              <item.icon size={20} className={activeService === item.id ? 'text-white' : 'group-hover:text-blue-400'} />
+              <item.icon size={20} />
               <span className="text-xs font-bold uppercase tracking-wider">{item.label}</span>
             </button>
           ))}
         </nav>
       </aside>
 
-      {/* Área Principal */}
       <main className="flex-1 ml-64 min-h-screen">
         {activeService === 'home' ? (
           <div className="animate-in fade-in duration-700">
-            {/* Seção da Logo (Hero) */}
             <section className="relative w-full py-16 px-8 flex flex-col items-center justify-center bg-white border-b border-slate-100">
-              <div className="relative z-10 flex flex-col items-center">
-                
-                {/* Imagem com correção de caminho ./ */}
-                <div className="relative group">
-                  <img 
-                    src="./logo-ret.png" 
-                    alt="RET Engenharia" 
-                    className="max-w-xl md:max-w-2xl w-full h-auto drop-shadow-2xl mb-8 transition-transform duration-500 group-hover:scale-105"
-                    onError={(e) => {
-                      const target = e.currentTarget;
-                      // Fallback: se logo-ret.png falhar, tenta inspecao.jpg
-                      if (!target.src.includes('inspecao.jpg')) {
-                        target.src = './inspecao.jpg';
-                      }
-                    }}
-                  />
-                </div>
-                
-                <div className="text-center mt-4">
-                  <h2 className="text-4xl md:text-6xl font-black text-slate-800 tracking-tighter">
-                    RET <span className="text-blue-600">ENGENHARIA</span>
-                  </h2>
-                  <p className="mt-6 text-slate-500 max-w-2xl text-lg mx-auto font-medium uppercase tracking-[0.2em]">
-                    Inovação e Segurança em Projetos
-                  </p>
-                  <div className="w-24 h-2 bg-blue-600 mx-auto mt-8 rounded-full shadow-lg shadow-blue-500/50"></div>
-                </div>
+              <img 
+                src="./logo-ret.png" 
+                alt="RET Engenharia" 
+                className="max-w-xl w-full h-auto drop-shadow-2xl mb-8"
+                onError={(e) => {
+                  e.currentTarget.src = "https://raw.githubusercontent.com/PauloCereal/RET-Engenharia/main/public/logo-ret.png";
+                }}
+              />
+              <div className="text-center">
+                <h2 className="text-4xl font-black text-slate-800 uppercase tracking-tighter">RET Engenharia</h2>
+                <div className="w-20 h-1.5 bg-blue-600 mx-auto mt-6 rounded-full"></div>
               </div>
             </section>
-
-            {/* Grid de Serviços */}
-            <section className="p-8 md:p-12 bg-slate-50">
-              <div className="max-w-7xl mx-auto text-center mb-16">
-                <span className="text-blue-600 font-bold uppercase tracking-[0.3em] text-xs">Nossas Especialidades</span>
-                <h3 className="text-4xl font-black text-slate-900 mt-4">Soluções Completas</h3>
-                <div className="w-12 h-1 bg-slate-300 mx-auto mt-4"></div>
-              </div>
+            <section className="p-8">
               <Services onNavigate={setActiveService} />
             </section>
           </div>
         ) : (
-          <div className="p-8">
-            <ContentArea activeId={activeService} />
-          </div>
+          <ContentArea activeId={activeService} />
         )}
       </main>
-
-      {/* Botão flutuante para contato direto */}
       <WhatsAppButton />
     </div>
   );
