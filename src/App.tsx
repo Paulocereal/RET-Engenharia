@@ -1,30 +1,28 @@
+import { useState } from 'react';
 import { Sidebar } from './components/Sidebar';
-import Header from './components/Header';
-import Hero from './components/Hero';
-import Services from './components/Services';
-import About from './components/About';
-import Projects from './components/Projects';
-import Testimonials from './components/Testimonials';
-import Contact from './components/Contact';
-import Footer from './components/Footer';
+import { ContentArea } from './components/ContentArea';
 
 function App() {
-  return (
-    <div className="flex min-h-screen bg-white">
-      {/* O Sidebar fixo na esquerda */}
-      <Sidebar />
+  // Estado para saber qual serviço mostrar. 'home' é o padrão.
+  const [activeService, setActiveService] = useState('home');
 
-      {/* O restante do conteúdo à direita */}
-      <div className="flex-1 overflow-x-hidden">
-        <Header />
-        <Hero />
-        <Services />
-        <About />
-        <Projects />
-        <Testimonials />
-        <Contact />
-        <Footer />
-      </div>
+  return (
+    <div className="flex h-screen bg-slate-50 overflow-hidden">
+      {/* Passamos a função setActiveService para a Sidebar */}
+      <Sidebar onNavigate={setActiveService} />
+      
+      <main className="flex-1 overflow-y-auto">
+        {activeService === 'home' ? (
+          <div className="flex flex-col items-center justify-center h-full text-center p-10">
+             <h1 className="text-5xl font-bold text-slate-900 mb-4">RET Engenharia</h1>
+             <p className="text-xl text-slate-500 max-w-lg">
+               Selecione uma categoria ao lado para explorar nossas soluções em Engenharia Mecânica e Segurança do Trabalho.
+             </p>
+          </div>
+        ) : (
+          <ContentArea activeId={activeService} />
+        )}
+      </main>
     </div>
   );
 }
