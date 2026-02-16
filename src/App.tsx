@@ -62,7 +62,7 @@ function App() {
               <img 
                 src="./logo-ret.png" 
                 alt="RET Engenharia" 
-                className="max-w-xl w-full h-auto drop-shadow-2xl mb-8"
+                className="max-w-4xl w-full h-auto drop-shadow-2xl mb-8"
                 onError={(e) => {
                   e.currentTarget.src = "https://raw.githubusercontent.com/PauloCereal/RET-Engenharia/main/public/logo-ret.png";
                 }}
