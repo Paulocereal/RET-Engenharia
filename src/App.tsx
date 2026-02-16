@@ -1,35 +1,42 @@
-import { useState } from 'react';
-import { Sidebar } from './components/Sidebar';
-import { ContentArea } from './components/ContentArea';
-import Services from './components/Services'; // Importe os seus cards
-
-function App() {
-  const [activeService, setActiveService] = useState('home');
-
-  return (
-    <div className="flex h-screen bg-slate-50 overflow-hidden">
-      <Sidebar onNavigate={setActiveService} />
+{activeService === 'home' ? (
+  <>
+    {/* Hero Section Otimizada para Logo com Fundo Branco */}
+    <div className="relative w-full min-h-[65vh] flex flex-col items-center justify-center overflow-hidden bg-white">
       
-      <main className="flex-1 overflow-y-auto">
-        {activeService === 'home' ? (
-          <>
-            {/* Hero Section */}
-            <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-10 bg-white">
-               <h1 className="text-5xl font-bold text-slate-900 mb-4">RET Engenharia</h1>
-               <p className="text-xl text-slate-500 max-w-lg">
-                 Selecione uma categoria ao lado ou explore nossos serviços abaixo.
-               </p>
-            </div>
-            
-            {/* Cards de Serviços - Passando a função de navegar aqui também! */}
-            <Services onNavigate={setActiveService} />
-          </>
-        ) : (
-          <ContentArea activeId={activeService} />
-        )}
-      </main>
-    </div>
-  );
-}
+      {/* Sutil detalhe de grade ao fundo (opcional, para ar de engenharia) */}
+      <div className="absolute inset-0 opacity-[0.03] pointer-events-none" 
+           style={{ backgroundImage: 'radial-gradient(#000 1px, transparent 1px)', size: '30px 30px' }}>
+      </div>
 
-export default App;
+      {/* Container da Logo */}
+      <div className="relative z-10 flex flex-col items-center p-6 animate-in fade-in slide-in-from-bottom-8 duration-1000">
+        <img 
+          src="/logo-ret.jpg" 
+          alt="RET Engenharia" 
+          className="max-w-xl md:max-w-2xl w-full h-auto drop-shadow-2xl"
+        />
+        
+        {/* Texto de Apoio */}
+        <div className="mt-4 text-center">
+          <h2 className="text-2xl md:text-4xl font-bold text-slate-800 tracking-tight">
+            RET <span className="text-blue-600">Engenharia</span>
+          </h2>
+          <p className="text-slate-500 mt-2 font-medium uppercase tracking-[0.3em] text-sm md:text-base">
+            Inovação e Segurança em Projetos
+          </p>
+          <div className="w-16 h-1.5 bg-blue-600 mx-auto mt-6 rounded-full shadow-lg shadow-blue-500/30"></div>
+        </div>
+      </div>
+    </div>
+    
+    {/* Faixa de Transição Sutil */}
+    <div className="h-10 bg-gradient-to-b from-white to-slate-50"></div>
+    
+    {/* Seção de Serviços */}
+    <div className="bg-slate-50">
+      <Services onNavigate={setActiveService} />
+    </div>
+  </>
+) : (
+  <ContentArea activeId={activeService} />
+)}
