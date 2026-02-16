@@ -9,7 +9,6 @@ interface SidebarProps {
   onNavigate: (id: string) => void;
 }
 
-// Lista completa com os 16 serviços + Início
 const menuItems = [
   { id: 'home', name: 'Início', icon: Home },
   { id: 'projetos-estruturais', name: 'Estruturas', icon: Building2 },
@@ -38,18 +37,20 @@ export function Sidebar({ onNavigate }: SidebarProps) {
         <p className="text-[10px] text-slate-500 uppercase font-semibold tracking-widest mt-1">Menu Técnico</p>
       </div>
 
-      {/* Área com Scroll caso a tela do usuário seja pequena */}
-      <nav className="grid grid-cols-2 gap-2 overflow-y-auto pr-2 custom-scrollbar">
+      {/* Grid com ícones maiores */}
+      <nav className="grid grid-cols-2 gap-3 overflow-y-auto pr-2 custom-scrollbar">
         {menuItems.map((item) => {
           const Icon = item.icon;
           return (
             <button
-  key={item.id}
-  onClick={() => onNavigate(item.id)}
-  className="flex flex-col items-center justify-center aspect-square p-3 rounded-xl bg-slate-800/50 border border-slate-700 hover:bg-blue-600 hover:border-blue-400 transition-all duration-300 group shadow-sm hover:shadow-lg hover:shadow-blue-500/50"
->
-              <Icon className="mb-1 text-blue-400 group-hover:text-white transition-colors" size={20} />
-              <span className="text-[9px] font-bold uppercase text-center group-hover:text-white leading-tight">
+              key={item.id}
+              onClick={() => onNavigate(item.id)}
+              className="flex flex-col items-center justify-center aspect-square p-3 rounded-xl bg-slate-800/50 border border-slate-700 hover:bg-blue-600 hover:border-blue-400 transition-all duration-300 group shadow-sm"
+            >
+              {/* Tamanho aumentado de 20 para 32 para maior impacto visual */}
+              <Icon className="mb-3 text-blue-400 group-hover:text-white transition-colors" size={32} />
+              
+              <span className="text-[10px] font-bold uppercase text-center group-hover:text-white leading-tight tracking-wide">
                 {item.name}
               </span>
             </button>
@@ -58,7 +59,7 @@ export function Sidebar({ onNavigate }: SidebarProps) {
       </nav>
 
       <div className="mt-auto pt-4 text-[9px] text-slate-600 text-center">
-        v2.0 • 2026
+        © 2026 RET Engenharia
       </div>
     </aside>
   );
