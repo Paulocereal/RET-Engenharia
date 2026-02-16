@@ -1,6 +1,6 @@
 <div className="relative z-10 flex flex-col items-center p-6 animate-in fade-in slide-in-from-bottom-8 duration-1000">
   <img 
-    src="./logo-ret.png" 
+    src="./inspecao.jpg" 
     alt="RET Engenharia" 
     className="max-w-xl md:max-w-2xl w-full h-auto drop-shadow-2xl"
     onError={(e) => {
