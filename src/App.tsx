@@ -1,19 +1,33 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Home, Layers, ShieldAlert, Building2, 
   Zap, Settings, MessageCircle, Menu, ChevronLeft,
-  X, Info, Package, Image, BookOpen, HelpCircle, Phone
+  ChevronRight
 } from 'lucide-react';
 
-// Importações dos componentes (Certifique-se que os arquivos existem em src/components/)
 import Services from './components/Services';
 import ContentArea from './components/ContentArea';
 
 function App() {
   const [activeService, setActiveService] = useState('home');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
 
-  // Lista da Sidebar (Projetos)
+  // Configuração das imagens do Banner (Sequência IM 1, IM 2, IM 3)
+  const slides = [
+    { url: './IM 1.jpg', title: 'Excelência em Engenharia' },
+    { url: './IM 2.jpg', title: 'Projetos de Alta Precisão' },
+    { url: './IM 3.jpg', title: 'Inovação e Tecnologia' },
+  ];
+
+  // Efeito para trocar o slide automaticamente a cada 5 segundos
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
   const menuItems = [
     { id: 'home', label: 'INÍCIO', icon: Home },
     { id: 'modulacao', label: 'Projetos de Modulação de Formas', icon: Layers },
@@ -23,7 +37,6 @@ function App() {
     { id: 'mecanicos', label: 'Projetos Mecânicos em Geral (Estruturas Metálicas)', icon: Settings },
   ];
 
-  // Lista do Menu Superior (Navegação Institucional)
   const topNavItems = [
     { id: 'home', label: 'HOME' },
     { id: 'quem-somos', label: 'QUEM SOMOS' },
@@ -44,7 +57,7 @@ function App() {
       >
         <div className="p-4 border-b border-slate-700 flex items-center justify-between">
           {isSidebarOpen && (
-            <h1 className="text-lg font-bold tracking-tighter text-blue-400 uppercase animate-in fade-in duration-500">
+            <h1 className="text-lg font-bold tracking-tighter text-blue-400 uppercase">
               RET ENGENHARIA
             </h1>
           )}
@@ -82,54 +95,74 @@ function App() {
       </aside>
 
       {/* 2. ÁREA DE CONTEÚDO PRINCIPAL */}
-      <main 
-        className={`flex-1 min-h-screen transition-all duration-300 ${
-          isSidebarOpen ? 'ml-80' : 'ml-20'
-        }`}
-      >
+      <main className={`flex-1 min-h-screen transition-all duration-300 ${isSidebarOpen ? 'ml-80' : 'ml-20'}`}>
+        
         {/* HEADER SUPERIOR CENTRALIZADO */}
         <header className="sticky top-0 w-full bg-white border-b border-slate-100 z-50 px-8 h-20 shadow-sm">
           <div className="max-w-7xl mx-auto h-full flex items-center justify-between relative">
-            
-            {/* Logo na Esquerda */}
             <div className="flex items-center cursor-pointer z-10" onClick={() => setActiveService('home')}>
               <img src="./logo-ret.png" alt="Logo" className="h-12 w-auto" />
             </div>
             
-            {/* Menu Horizontal Centralizado */}
             <nav className="hidden lg:flex absolute left-1/2 -translate-x-1/2 space-x-8">
               {topNavItems.map((nav) => (
                 <button
                   key={nav.id}
                   onClick={() => setActiveService(nav.id)}
                   className={`text-xs font-black tracking-widest transition-all hover:text-blue-600 py-2 border-b-2 ${
-                    activeService === nav.id 
-                      ? 'text-blue-600 border-blue-600' 
-                      : 'text-slate-600 border-transparent hover:border-blue-300'
+                    activeService === nav.id ? 'text-blue-600 border-blue-600' : 'text-slate-600 border-transparent'
                   }`}
                 >
                   {nav.label}
                 </button>
               ))}
             </nav>
-
-            {/* Espaçador invisível para manter o equilíbrio visual do flexbox */}
             <div className="hidden lg:block w-[150px]"></div>
           </div>
         </header>
 
         {activeService === 'home' ? (
           <div className="animate-in fade-in duration-700">
-            {/* Seção Hero / Banner */}
-            <section className="relative w-full py-16 px-8 flex flex-col items-center justify-center bg-white border-b border-slate-100">
-              <img 
-                src="./logo-ret.png" 
-                alt="RET Engenharia" 
-                className="max-w-4xl w-full h-auto drop-shadow-2xl mb-8 transition-transform duration-500 hover:scale-105"
-              />
-              <div className="text-center">
-                <h2 className="text-4xl font-black text-slate-800 uppercase tracking-tighter">Engenharia e Projetos</h2>
-                <div className="w-24 h-1.5 bg-blue-600 mx-auto mt-6 rounded-full"></div>
+            {/* CARROSSEL DE IMAGENS (Banner em Sequência) */}
+            <section className="relative w-full h-[500px] overflow-hidden bg-slate-200">
+              {slides.map((slide, index) => (
+                <div
+                  key={index}
+                  className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                    index === currentSlide ? 'opacity-100' : 'opacity-0'
+                  }`}
+                >
+                  <img 
+                    src={slide.url} 
+                    alt={slide.title}
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      // Fallback caso a extensão seja .png em vez de .jpg
+                      const target = e.target as HTMLImageElement;
+                      if (target.src.includes('.jpg')) target.src = target.src.replace('.jpg', '.png');
+                    }}
+                  />
+                  {/* Overlay Escuro para dar leitura ao título */}
+                  <div className="absolute inset-0 bg-black/30 flex flex-col items-center justify-center text-white">
+                    <h2 className="text-5xl font-black uppercase tracking-tighter drop-shadow-lg text-center px-4">
+                      {slide.title}
+                    </h2>
+                    <div className="w-24 h-1.5 bg-blue-600 mt-6 rounded-full"></div>
+                  </div>
+                </div>
+              ))}
+
+              {/* Controles do Carrossel (Bolinhas) */}
+              <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex space-x-3">
+                {slides.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentSlide(i)}
+                    className={`w-3 h-3 rounded-full transition-all ${
+                      i === currentSlide ? 'bg-blue-600 w-8' : 'bg-white/50'
+                    }`}
+                  />
+                ))}
               </div>
             </section>
             
@@ -144,7 +177,7 @@ function App() {
         )}
       </main>
 
-      {/* BOTÃO WHATSAPP */}
+      {/* WHATSAPP */}
       <a 
         href="https://wa.me/5511999999999" 
         target="_blank" 
