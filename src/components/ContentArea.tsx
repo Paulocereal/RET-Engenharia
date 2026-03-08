@@ -103,9 +103,12 @@ const ContentArea: React.FC<ContentAreaProps> = ({ activeId }) => {
           <div className="group bg-white rounded-3xl overflow-hidden shadow-xl border border-slate-100 transition-transform hover:-translate-y-2">
             <div className="aspect-video bg-black relative">
               <video 
+                autoPlay 
+                muted 
+                loop 
+                playsInline
                 controls 
                 className="w-full h-full object-cover"
-                poster="./IM 1.jpg"
               >
                 <source src="./video1.mp4" type="video/mp4" />
                 Seu navegador não suporta vídeos.
@@ -121,9 +124,12 @@ const ContentArea: React.FC<ContentAreaProps> = ({ activeId }) => {
           <div className="group bg-white rounded-3xl overflow-hidden shadow-xl border border-slate-100 transition-transform hover:-translate-y-2">
             <div className="aspect-video bg-black relative">
               <video 
+                autoPlay 
+                muted 
+                loop 
+                playsInline
                 controls 
                 className="w-full h-full object-cover"
-                poster="./IM 2.jpg"
               >
                 <source src="./video2.mp4" type="video/mp4" />
                 Seu navegador não suporta vídeos.
