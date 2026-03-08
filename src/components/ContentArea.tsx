@@ -5,6 +5,7 @@ interface ContentAreaProps {
 }
 
 const ContentArea: React.FC<ContentAreaProps> = ({ activeId }) => {
+  // Dados de serviços existentes
   const servicesData: Record<string, any> = {
     'estruturas': {
       title: "Projetos Estruturais",
@@ -88,8 +89,57 @@ const ContentArea: React.FC<ContentAreaProps> = ({ activeId }) => {
     }
   };
 
-  const content = servicesData[activeId];
+  // RENDERIZAÇÃO ESPECIAL PARA A GALERIA
+  if (activeId === 'galeria') {
+    return (
+      <div className="max-w-6xl mx-auto p-8 animate-in fade-in duration-700">
+        <h1 className="text-4xl font-bold text-slate-900 mb-2 border-b-4 border-blue-600 inline-block pb-2 uppercase tracking-tighter">
+          Galeria de Projetos
+        </h1>
+        <p className="text-slate-600 mb-10">Confira abaixo alguns de nossos trabalhos e execuções em campo.</p>
 
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+          {/* Vídeo 01 */}
+          <div className="group bg-white rounded-3xl overflow-hidden shadow-xl border border-slate-100 transition-transform hover:-translate-y-2">
+            <div className="aspect-video bg-black relative">
+              <video 
+                controls 
+                className="w-full h-full object-cover"
+                poster="./IM 1.jpg"
+              >
+                <source src="./video1.mp4" type="video/mp4" />
+                Seu navegador não suporta vídeos.
+              </video>
+            </div>
+            <div className="p-6">
+              <span className="text-blue-600 text-xs font-black tracking-widest uppercase">Projeto em Execução</span>
+              <h3 className="text-xl font-bold text-slate-800 mt-1">Montagem de Estruturas Metálicas</h3>
+            </div>
+          </div>
+
+          {/* Vídeo 02 */}
+          <div className="group bg-white rounded-3xl overflow-hidden shadow-xl border border-slate-100 transition-transform hover:-translate-y-2">
+            <div className="aspect-video bg-black relative">
+              <video 
+                controls 
+                className="w-full h-full object-cover"
+                poster="./IM 2.jpg"
+              >
+                <source src="./video2.mp4" type="video/mp4" />
+                Seu navegador não suporta vídeos.
+              </video>
+            </div>
+            <div className="p-6">
+              <span className="text-blue-600 text-xs font-black tracking-widest uppercase">Inspeção Técnica</span>
+              <h3 className="text-xl font-bold text-slate-800 mt-1">Vistoria de Segurança NR-12</h3>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const content = servicesData[activeId];
   if (!content) return null;
 
   return (
