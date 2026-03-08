@@ -1,17 +1,17 @@
 import React, { useState } from 'react';
 import { 
   Home, Layers, ShieldAlert, Building2, 
-  Zap, Settings, MessageCircle
+  Zap, Settings, MessageCircle, Menu, ChevronLeft
 } from 'lucide-react';
 
-// Importações dos componentes internos
 import Services from './components/Services';
 import ContentArea from './components/ContentArea';
 
 function App() {
   const [activeService, setActiveService] = useState('home');
+  // Estado para controlar se a sidebar está aberta ou fechada (inicia fechada)
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  // Lista organizada conforme sua solicitação
   const menuItems = [
     { id: 'home', label: 'INÍCIO', icon: Home },
     { id: 'modulacao', label: 'Projetos de Modulação de Formas', icon: Layers },
@@ -23,35 +23,66 @@ function App() {
 
   return (
     <div className="flex min-h-screen bg-slate-50 font-sans">
-      {/* Sidebar Lateral - Largura ajustada para nomes longos */}
-      <aside className="fixed inset-y-0 left-0 w-80 bg-[#0f172a] text-white shadow-2xl z-50 overflow-y-auto">
-        <div className="p-6 border-b border-slate-700">
-          <h1 className="text-xl font-bold tracking-tighter text-blue-400 uppercase">RET ENGENHARIA</h1>
+      {/* Sidebar Lateral Retrátil */}
+      <aside 
+        className={`fixed inset-y-0 left-0 bg-[#0f172a] text-white shadow-2xl z-50 transition-all duration-300 ease-in-out overflow-hidden ${
+          isSidebarOpen ? 'w-80' : 'w-20'
+        }`}
+      >
+        {/* Cabeçalho da Sidebar com Botão de Abrir/Fechar */}
+        <div className="p-4 border-b border-slate-700 flex items-center justify-between">
+          {isSidebarOpen && (
+            <h1 className="text-lg font-bold tracking-tighter text-blue-400 uppercase animate-in fade-in duration-500">
+              RET ENGENHARIA
+            </h1>
+          )}
+          <button 
+            onClick={() => setIsSidebarOpen(!isSidebarOpen)}
+            className="p-2 hover:bg-slate-800 rounded-lg text-blue-400 mx-auto transition-colors"
+          >
+            {isSidebarOpen ? <ChevronLeft size={24} /> : <Menu size={24} />}
+          </button>
         </div>
-        <nav className="p-4 space-y-2">
+
+        {/* Navegação */}
+        <nav className="p-3 space-y-2">
           {menuItems.map((item) => (
             <button
               key={item.id}
-              onClick={() => setActiveService(item.id)}
-              className={`w-full flex items-center space-x-3 px-4 py-4 rounded-xl transition-all duration-200 text-left ${
+              onClick={() => {
+                setActiveService(item.id);
+                // Opcional: fechar a sidebar ao clicar em um item no celular
+                // if (window.innerWidth < 768) setIsSidebarOpen(false);
+              }}
+              title={!isSidebarOpen ? item.label : ""}
+              className={`w-full flex items-center rounded-xl transition-all duration-200 text-left ${
+                isSidebarOpen ? 'px-4 py-4 space-x-3' : 'justify-center py-4'
+              } ${
                 activeService === item.id 
                   ? 'bg-blue-600 text-white shadow-lg' 
                   : 'text-slate-400 hover:bg-slate-800 hover:text-white'
               }`}
             >
               <item.icon size={22} className="flex-shrink-0" />
-              <span className="text-sm font-medium leading-tight">{item.label}</span>
+              {isSidebarOpen && (
+                <span className="text-sm font-medium leading-tight animate-in slide-in-from-left-2 duration-300">
+                  {item.label}
+                </span>
+              )}
             </button>
           ))}
         </nav>
       </aside>
 
-      {/* Conteúdo Principal - Margem ajustada para a nova sidebar */}
-      <main className="flex-1 ml-80 min-h-screen">
+      {/* Conteúdo Principal - A margem ml se ajusta conforme a sidebar */}
+      <main 
+        className={`flex-1 min-h-screen transition-all duration-300 ${
+          isSidebarOpen ? 'ml-80' : 'ml-20'
+        }`}
+      >
         {activeService === 'home' ? (
           <div className="animate-in fade-in duration-700">
             <section className="relative w-full py-16 px-8 flex flex-col items-center justify-center bg-white border-b border-slate-100">
-              {/* LOGO AMPLIADA (max-w-4xl) */}
               <img 
                 src="./logo-ret.png" 
                 alt="RET Engenharia" 
@@ -71,13 +102,13 @@ function App() {
             </section>
           </div>
         ) : (
-          <div className="animate-in slide-in-from-right duration-300">
+          <div className="p-8">
             <ContentArea activeId={activeService} />
           </div>
         )}
       </main>
 
-      {/* Botão de WhatsApp flutuante */}
+      {/* WhatsApp */}
       <a 
         href="https://wa.me/5511999999999" 
         target="_blank" 
