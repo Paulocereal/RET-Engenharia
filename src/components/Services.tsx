@@ -1,18 +1,41 @@
 import React from 'react';
-import { Building2, ClipboardCheck, Hammer, LineChart, Shield, Users, Wind, Flame, HardHat, Gauge, Recycle, PlayCircle, Car, Fan, Truck, FileText } from 'lucide-react';
+import { Layers, ShieldAlert, Building2, Zap, Settings } from 'lucide-react';
 
-// 1. Adicionamos a interface para receber a função de navegar
 interface ServicesProps {
   onNavigate: (id: string) => void;
 }
 
 const services = [
-  { icon: Shield, title: 'NR-12: Segurança em Máquinas', description: 'Laudos de conformidade técnica e análise de risco detalhada.', id: 'nr-12' },
-  { icon: Wind, title: 'PMOC: Ar Condicionado', description: 'Plano de Manutenção, Operação e Controle para qualidade do ar.', id: 'pmoc' },
-  { icon: Flame, title: 'Rede GLP: Instalações de Gás', description: 'Testes de estanqueidade e inspeção técnica em redes de gás.', id: 'rede-glp' },
-  { icon: Gauge, title: 'NR-13: Vasos e Caldeiras', description: 'Inspeção de segurança em vasos de pressão e caldeiras.', id: 'nr-13' },
-  // ... adicione os outros IDs seguindo o mesmo padrão dos arquivos .html antigos (sem o .html)
-  { icon: HardHat, title: 'Andaimes: Segurança', description: 'Inspeção e laudo de montagem conforme NR-18.', id: 'andaimes' },
+  { 
+    icon: Layers, 
+    title: 'Projetos de Modulação de Formas', 
+    description: 'Otimização e detalhamento de sistemas de fôrmas para construção civil.', 
+    id: 'modulacao' 
+  },
+  { 
+    icon: ShieldAlert, 
+    title: 'Projeto de Sistemas de Segurança', 
+    description: 'Laudos de conformidade, análise de risco e proteção industrial.', 
+    id: 'seguranca' 
+  },
+  { 
+    icon: Building2, 
+    title: 'Projetos Estruturais de Concreto Armado', 
+    description: 'Cálculo e dimensionamento de estruturas com foco em estabilidade e segurança.', 
+    id: 'estruturais' 
+  },
+  { 
+    icon: Zap, 
+    title: 'Projetos de Instalações Elétricas e Hidráulicas', 
+    description: 'Projetos integrados de infraestrutura para residências e indústrias.', 
+    id: 'eletrica-hidraulica' 
+  },
+  { 
+    icon: Settings, 
+    title: 'Projetos Mecânicos em Geral (Estruturas Metálicas)', 
+    description: 'Desenvolvimento e inspeção de estruturas metálicas e sistemas mecânicos.', 
+    id: 'mecanicos' 
+  },
 ];
 
 export default function Services({ onNavigate }: ServicesProps) {
@@ -28,7 +51,6 @@ export default function Services({ onNavigate }: ServicesProps) {
           {services.map((service, index) => {
             const Icon = service.icon;
             return (
-              /* 2. Trocamos a tag <a> por uma <button> */
               <button 
                 key={index}
                 onClick={() => onNavigate(service.id)}
@@ -40,6 +62,9 @@ export default function Services({ onNavigate }: ServicesProps) {
                   </div>
                   <h3 className="text-xl font-bold text-slate-900 mb-3">{service.title}</h3>
                   <p className="text-gray-600 leading-relaxed">{service.description}</p>
+                  <div className="mt-auto pt-6 text-blue-600 font-bold text-sm flex items-center group-hover:translate-x-2 transition-transform">
+                    SAIBA MAIS →
+                  </div>
                 </div>
               </button>
             );
