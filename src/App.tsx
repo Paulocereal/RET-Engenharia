@@ -36,7 +36,7 @@ function App() {
 
   return (
     <div className="flex min-h-screen bg-slate-50 font-sans">
-      {/* 1. SIDEBAR LATERAL RETRÁTIL (Mantida conforme ajustes anteriores) */}
+      {/* 1. SIDEBAR LATERAL RETRÁTIL */}
       <aside 
         className={`fixed inset-y-0 left-0 bg-[#0f172a] text-white shadow-2xl z-[60] transition-all duration-300 ease-in-out overflow-hidden ${
           isSidebarOpen ? 'w-80' : 'w-20'
@@ -87,27 +87,35 @@ function App() {
           isSidebarOpen ? 'ml-80' : 'ml-20'
         }`}
       >
-        {/* HEADER SUPERIOR (NOVO AJUSTE) */}
-        <header className="sticky top-0 w-full bg-white border-b border-slate-100 z-50 px-8 h-20 flex items-center justify-between shadow-sm">
-          {/* Logo no Header */}
-          <div className="flex items-center cursor-pointer" onClick={() => setActiveService('home')}>
-             <img src="./logo-ret.png" alt="Logo" className="h-12 w-auto mr-4" />
+        {/* HEADER SUPERIOR CENTRALIZADO */}
+        <header className="sticky top-0 w-full bg-white border-b border-slate-100 z-50 px-8 h-20 shadow-sm">
+          <div className="max-w-7xl mx-auto h-full flex items-center justify-between relative">
+            
+            {/* Logo na Esquerda */}
+            <div className="flex items-center cursor-pointer z-10" onClick={() => setActiveService('home')}>
+              <img src="./logo-ret.png" alt="Logo" className="h-12 w-auto" />
+            </div>
+            
+            {/* Menu Horizontal Centralizado */}
+            <nav className="hidden lg:flex absolute left-1/2 -translate-x-1/2 space-x-8">
+              {topNavItems.map((nav) => (
+                <button
+                  key={nav.id}
+                  onClick={() => setActiveService(nav.id)}
+                  className={`text-xs font-black tracking-widest transition-all hover:text-blue-600 py-2 border-b-2 ${
+                    activeService === nav.id 
+                      ? 'text-blue-600 border-blue-600' 
+                      : 'text-slate-600 border-transparent hover:border-blue-300'
+                  }`}
+                >
+                  {nav.label}
+                </button>
+              ))}
+            </nav>
+
+            {/* Espaçador invisível para manter o equilíbrio visual do flexbox */}
+            <div className="hidden lg:block w-[150px]"></div>
           </div>
-          
-          {/* Menu Horizontal Estilo Metro Modular */}
-          <nav className="hidden lg:flex space-x-6">
-            {topNavItems.map((nav) => (
-              <button
-                key={nav.id}
-                onClick={() => setActiveService(nav.id)}
-                className={`text-xs font-black tracking-widest transition-colors hover:text-blue-600 ${
-                  activeService === nav.id ? 'text-blue-600 border-b-2 border-blue-600' : 'text-slate-600'
-                }`}
-              >
-                {nav.label}
-              </button>
-            ))}
-          </nav>
         </header>
 
         {activeService === 'home' ? (
@@ -136,7 +144,7 @@ function App() {
         )}
       </main>
 
-      {/* BOTÃO WHATSAPP (Embutido para evitar erro de importação) */}
+      {/* BOTÃO WHATSAPP */}
       <a 
         href="https://wa.me/5511999999999" 
         target="_blank" 
