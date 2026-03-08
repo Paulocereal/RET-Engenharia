@@ -1,94 +1,90 @@
 import React, { useState } from 'react';
 import { 
-  Home, Building2, ShieldCheck, Wind, Flame, 
-  ClipboardCheck, Construction, Gauge, Hammer, 
-  Microscope, PlayCircle, Car, Fan, Truck, 
-  Snowflake, Anchor, FireExtinguisher
+  Home, Layers, ShieldAlert, Building2, 
+  Zap, Settings, MessageCircle
 } from 'lucide-react';
 
-// Importações ajustadas para evitar erro de exportação
+// Importações dos componentes internos
 import Services from './components/Services';
 import ContentArea from './components/ContentArea';
 
 function App() {
   const [activeService, setActiveService] = useState('home');
 
+  // Lista organizada conforme sua solicitação
   const menuItems = [
     { id: 'home', label: 'INÍCIO', icon: Home },
-    { id: 'estruturas', label: 'ESTRUTURAS', icon: Building2 },
-    { id: 'nr-12', label: 'NR-12', icon: ShieldCheck },
-    { id: 'pmoc', label: 'PMOC', icon: Wind },
-    { id: 'gas-glp', label: 'GÁS GLP', icon: Flame },
-    { id: 'cautelar', label: 'CAUTELAR', icon: ClipboardCheck },
-    { id: 'andaimes', label: 'ANDAIMES', icon: Construction },
-    { id: 'nr-13', label: 'NR-13', icon: Gauge },
-    { id: 'pesados', label: 'PESADOS', icon: Hammer },
-    { id: 'pericia', label: 'PERÍCIA', icon: Microscope },
-    { id: 'kids', label: 'KIDS', icon: PlayCircle },
-    { id: 'veicular', label: 'VEICULAR', icon: Car },
-    { id: 'exaustao', label: 'EXAUSTÃO', icon: Fan },
-    { id: 'nr-11', label: 'NR-11', icon: Truck },
-    { id: 'hvac', label: 'HVAC', icon: Snowflake },
-    { id: 'l-vida', label: 'L. VIDA', icon: Anchor },
-    { id: 'ppci', label: 'PPCI', icon: FireExtinguisher },
+    { id: 'modulacao', label: 'Projetos de Modulação de Formas', icon: Layers },
+    { id: 'seguranca', label: 'Projeto de Sistemas de Segurança', icon: ShieldAlert },
+    { id: 'estruturais', label: 'Projetos Estruturais de Concreto Armado', icon: Building2 },
+    { id: 'eletrica-hidraulica', label: 'Projetos de Instalações Elétricas e Hidráulicas', icon: Zap },
+    { id: 'mecanicos', label: 'Projetos Mecânicos em Geral (Estruturas Metálicas)', icon: Settings },
   ];
 
   return (
     <div className="flex min-h-screen bg-slate-50 font-sans">
-      <aside className="fixed inset-y-0 left-0 w-64 bg-[#0f172a] text-white shadow-2xl z-50 overflow-y-auto">
+      {/* Sidebar Lateral - Largura ajustada para nomes longos */}
+      <aside className="fixed inset-y-0 left-0 w-80 bg-[#0f172a] text-white shadow-2xl z-50 overflow-y-auto">
         <div className="p-6 border-b border-slate-700">
-          <h1 className="text-xl font-bold tracking-tighter text-blue-400">RET ENGENHARIA</h1>
+          <h1 className="text-xl font-bold tracking-tighter text-blue-400 uppercase">RET ENGENHARIA</h1>
         </div>
-        <nav className="p-4 space-y-1">
+        <nav className="p-4 space-y-2">
           {menuItems.map((item) => (
             <button
               key={item.id}
               onClick={() => setActiveService(item.id)}
-              className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200 ${
-                activeService === item.id ? 'bg-blue-600 text-white' : 'text-slate-400 hover:bg-slate-800'
+              className={`w-full flex items-center space-x-3 px-4 py-4 rounded-xl transition-all duration-200 text-left ${
+                activeService === item.id 
+                  ? 'bg-blue-600 text-white shadow-lg' 
+                  : 'text-slate-400 hover:bg-slate-800 hover:text-white'
               }`}
             >
-              <item.icon size={20} />
-              <span className="text-xs font-bold uppercase tracking-wider">{item.label}</span>
+              <item.icon size={22} className="flex-shrink-0" />
+              <span className="text-sm font-medium leading-tight">{item.label}</span>
             </button>
           ))}
         </nav>
       </aside>
 
-      <main className="flex-1 ml-64 min-h-screen">
+      {/* Conteúdo Principal - Margem ajustada para a nova sidebar */}
+      <main className="flex-1 ml-80 min-h-screen">
         {activeService === 'home' ? (
           <div className="animate-in fade-in duration-700">
             <section className="relative w-full py-16 px-8 flex flex-col items-center justify-center bg-white border-b border-slate-100">
+              {/* LOGO AMPLIADA (max-w-4xl) */}
               <img 
                 src="./logo-ret.png" 
                 alt="RET Engenharia" 
-                className="max-w-4xl w-full h-auto drop-shadow-2xl mb-8"
+                className="max-w-4xl w-full h-auto drop-shadow-2xl mb-8 transition-transform duration-500 hover:scale-105"
                 onError={(e) => {
                   e.currentTarget.src = "https://raw.githubusercontent.com/PauloCereal/RET-Engenharia/main/public/logo-ret.png";
                 }}
               />
               <div className="text-center">
-                <h2 className="text-4xl font-black text-slate-800 uppercase tracking-tighter">RET Engenharia</h2>
-                <div className="w-20 h-1.5 bg-blue-600 mx-auto mt-6 rounded-full"></div>
+                <h2 className="text-4xl font-black text-slate-800 uppercase tracking-tighter">Engenharia e Projetos</h2>
+                <div className="w-24 h-1.5 bg-blue-600 mx-auto mt-6 rounded-full"></div>
               </div>
             </section>
+            
             <section className="p-8">
               <Services onNavigate={setActiveService} />
             </section>
           </div>
         ) : (
-          <ContentArea activeId={activeService} />
+          <div className="animate-in slide-in-from-right duration-300">
+            <ContentArea activeId={activeService} />
+          </div>
         )}
       </main>
 
-      {/* Botão de WhatsApp embutido para evitar erros de importação externa */}
+      {/* Botão de WhatsApp flutuante */}
       <a 
-        href="https://wa.me/5500000000000" 
+        href="https://wa.me/5511999999999" 
         target="_blank" 
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-all z-50 flex items-center justify-center"
+        className="fixed bottom-8 right-8 bg-[#25d366] text-white p-4 rounded-full shadow-2xl hover:scale-110 transition-all z-50 flex items-center justify-center"
       >
-        <span className="font-bold">WhatsApp</span>
+        <MessageCircle size={32} />
       </a>
     </div>
   );
