@@ -11,7 +11,7 @@ export default function Footer() {
           {/* Coluna 1: Logo e Descrição */}
           <div className="md:col-span-1">
              <img 
-              src="/logo-ret.png" 
+              src="/inspecao.jpg" 
               alt="RET Engenharia" 
               className="h-12 w-auto mb-6 brightness-0 invert" 
             />
