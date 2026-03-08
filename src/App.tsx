@@ -101,7 +101,7 @@ function App() {
         <header className="sticky top-0 w-full bg-white border-b border-slate-100 z-50 px-8 h-20 shadow-sm">
           <div className="max-w-7xl mx-auto h-full flex items-center justify-between relative">
             <div className="flex items-center cursor-pointer z-10" onClick={() => setActiveService('home')}>
-              <img src="./logo-ret.png" alt="Logo" className="h-12 w-auto" />
+              <img src=".//inspecao.jpg" alt="Logo" className="h-12 w-auto" />
             </div>
             
             <nav className="hidden lg:flex absolute left-1/2 -translate-x-1/2 space-x-8">
