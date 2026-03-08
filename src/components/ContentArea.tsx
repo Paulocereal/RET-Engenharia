@@ -108,9 +108,10 @@ const ContentArea: React.FC<ContentAreaProps> = ({ activeId }) => {
                 loop 
                 playsInline
                 controls 
+                preload="auto"
                 className="w-full h-full object-cover"
               >
-                <source src="./video1.mp4" type="video/mp4" />
+                <source src="/video1.mp4" type="video/mp4" />
                 Seu navegador não suporta vídeos.
               </video>
             </div>
@@ -129,9 +130,10 @@ const ContentArea: React.FC<ContentAreaProps> = ({ activeId }) => {
                 loop 
                 playsInline
                 controls 
+                preload="auto"
                 className="w-full h-full object-cover"
               >
-                <source src="./video2.mp4" type="video/mp4" />
+                <source src="/video2.mp4" type="video/mp4" />
                 Seu navegador não suporta vídeos.
               </video>
             </div>
