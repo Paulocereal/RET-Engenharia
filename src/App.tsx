@@ -130,3 +130,46 @@ function App() {
 }
 
 export default App;
+import { useState } from 'react';
+
+import Hero from './components/Hero';
+import Services from './components/Services';
+import Approach from './components/Approach';
+import Expertise from './components/Expertise';
+import SpecialServices from './components/SpecialServices';
+import ContentArea from './components/ContentArea';
+import Footer from './components/Footer';
+import WhatsAppButton from './components/WhatsAppButton'; // 👈 NOVO
+
+// ... (WHATSAPP_NUMBER, WHATSAPP_MESSAGE, WHATSAPP_LINK, topNavItems iguais)
+
+function App() {
+  // ... (handleNav e handleHome iguais)
+
+  return (
+    <div className="relative min-h-screen font-sans">
+      {/* ... fundo, overlay, header ... */}
+
+      {activeService === 'home' ? (
+        <div className="animate-in fade-in duration-700">
+          <Hero onNavigate={setActiveService} />
+          <Services onNavigate={setActiveService} />
+          <Approach />
+          <Expertise />
+          <SpecialServices />
+        </div>
+      ) : (
+        <div className="p-8">
+          <ContentArea activeId={activeService} />
+        </div>
+      )}
+
+      <Footer />
+
+      {/* 🟢 Botão flutuante do WhatsApp */}
+      <WhatsAppButton />
+    </div>
+  );
+}
+
+export default App;
