@@ -12,28 +12,28 @@ interface ServiceItem {
 
 const services: ServiceItem[] = [
   {
-    img: '/image4.png',
+    img: '/image4.jpg',   // ✅ .jpg
     alt: 'Projeto de Modulação de Formas de Alumínio',
     title: 'Projeto de Modulação de Formas de Alumínio',
     text: 'Projetos de alta precisão para estruturas e formas de alumínio, garantindo desempenho, segurança e racionalização de materiais.',
     target: 'modulacao',
   },
   {
-    img: '/image3.png',
+    img: '/image3.jpg',   // ✅ .jpg
     alt: 'Sistemas de Segurança e Linha de Vida',
     title: 'Sistemas de Segurança e Linha de Vida',
     text: 'Sistemas elétricos de alta performance, focados na segurança, continuidade operacional e conformidade com normas técnicas.',
     target: 'seguranca',
   },
   {
-    img: '/image2.png',
+    img: '/image2.jpg',   // ✅ .jpg
     alt: 'Projeto de Estrutura Metálica',
     title: 'Projeto de Estrutura Metálica',
     text: 'Soluções de proteção contra incêndio e evacuação, integradas ao projeto estrutural para máxima segurança.',
     target: 'mecanicos',
   },
   {
-    img: '/image1.png',
+    img: '/image1.jpg',   // ✅ .jpg
     alt: 'Projetos Mecânicos',
     title: 'Projetos Mecânicos',
     text: 'Análise de estruturas e sistemas mecânicos para garantir eficiência, durabilidade e redução de falhas.',
