@@ -4,7 +4,7 @@ interface HeroProps {
 
 export default function Hero({ onNavigate }: HeroProps) {
   return (
-    <section className="relative w-full min-h-[600px] lg:min-h-[720px] flex items-center justify-center">
+  <section id="home" className="relative w-full min-h-[600px] lg:min-h-[720px] flex items-center justify-center">
       <div className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-28">
         {/* TÍTULO — maior e em IBM Plex Sans */}
         <h1 className="font-heading text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold uppercase tracking-tighter text-white drop-shadow-2xl max-w-5xl leading-[0.95]">
