@@ -22,15 +22,16 @@ function App() {
   ];
 
   return (
-    <div className="relative min-h-screen bg-slate-50 font-sans">
-      {/* 🖼️ Imagem de fundo FIXA (não rola com a página) */}
+    // ⚠️ SEM bg-slate-50 — se colocar cor sólida aqui, ela cobre a imagem de fundo
+    <div className="relative min-h-screen font-sans">
+      {/* 🖼️ Imagem de fundo FIXA */}
       <div
         className="fixed inset-0 -z-20 bg-cover bg-center bg-no-repeat"
         style={{ backgroundImage: 'url("/fundo.jpg")' }}
         aria-hidden="true"
       />
 
-      {/* 🌒 Overlay em GRADIENTE fixo — forte em cima, escuro embaixo */}
+      {/* 🌒 Overlay em gradiente — forte em cima, escuro embaixo */}
       <div
         className="fixed inset-0 -z-10 bg-gradient-to-b from-slate-950/40 via-slate-950/70 to-slate-950/95"
         aria-hidden="true"
@@ -38,7 +39,6 @@ function App() {
 
       {/* Conteúdo rolável */}
       <main className="relative flex-1 min-h-screen w-full">
-        {/* HEADER */}
         <header className="sticky top-0 w-full bg-white/95 backdrop-blur border-b border-slate-100 z-50 px-8 h-20 shadow-sm">
           <div className="max-w-7xl mx-auto h-full flex items-center justify-between relative">
             <div
