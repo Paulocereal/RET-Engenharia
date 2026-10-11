@@ -7,9 +7,10 @@ import Expertise from './components/Expertise';
 import SpecialServices from './components/SpecialServices';
 import ContentArea from './components/ContentArea';
 import Footer from './components/Footer';
+import WhatsAppButton from './components/WhatsAppButton'; // 👈 NOVO
 
-// 🔗 Número do WhatsApp (sem "+" e sem espaços)
-const WHATSAPP_NUMBER = '553193056056;
+// 🔗 WhatsApp (sem "+", sem espaços, sem traços)
+const WHATSAPP_NUMBER = '553193056056';
 const WHATSAPP_MESSAGE = encodeURIComponent(
   'Olá! Gostaria de fazer um orçamento com a RET-Engenharia.'
 );
@@ -18,16 +19,16 @@ const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}
 interface NavItem {
   id: string;
   label: string;
-  target?: string;  // id da seção da home
-  link?: string;    // URL externa (abre em nova aba)
+  target?: string; // id da seção da home
+  link?: string;   // URL externa (abre em nova aba)
 }
 
 const topNavItems: NavItem[] = [
-  { id: 'services',        label: 'NOSSO SERVIÇOS',         target: 'services' },
-  { id: 'approach',        label: 'FORMAS DE ALUMÍNIO',     target: 'approach' },
-  { id: 'expertise',       label: 'EXPERTISE TÉCNICA',      target: 'expertise' },
-  { id: 'special-services', label: 'SERVIÇOS ESPECIALIZADOS', target: 'special-services' },
-  { id: 'whatsapp',        label: 'WHATSAPP',               link: WHATSAPP_LINK },
+  { id: 'services',         label: 'NOSSOS SERVIÇOS',          target: 'services' },
+  { id: 'approach',         label: 'FORMAS DE ALUMÍNIO',       target: 'approach' },
+  { id: 'expertise',        label: 'EXPERTISE TÉCNICA',        target: 'expertise' },
+  { id: 'special-services', label: 'SERVIÇOS ESPECIALIZADOS',  target: 'special-services' },
+  { id: 'whatsapp',         label: 'WHATSAPP',                 link: WHATSAPP_LINK },
 ];
 
 function App() {
@@ -125,48 +126,8 @@ function App() {
 
         <Footer />
       </main>
-    </div>
-  );
-}
 
-export default App;
-import { useState } from 'react';
-
-import Hero from './components/Hero';
-import Services from './components/Services';
-import Approach from './components/Approach';
-import Expertise from './components/Expertise';
-import SpecialServices from './components/SpecialServices';
-import ContentArea from './components/ContentArea';
-import Footer from './components/Footer';
-import WhatsAppButton from './components/WhatsAppButton'; // 👈 NOVO
-
-// ... (WHATSAPP_NUMBER, WHATSAPP_MESSAGE, WHATSAPP_LINK, topNavItems iguais)
-
-function App() {
-  // ... (handleNav e handleHome iguais)
-
-  return (
-    <div className="relative min-h-screen font-sans">
-      {/* ... fundo, overlay, header ... */}
-
-      {activeService === 'home' ? (
-        <div className="animate-in fade-in duration-700">
-          <Hero onNavigate={setActiveService} />
-          <Services onNavigate={setActiveService} />
-          <Approach />
-          <Expertise />
-          <SpecialServices />
-        </div>
-      ) : (
-        <div className="p-8">
-          <ContentArea activeId={activeService} />
-        </div>
-      )}
-
-      <Footer />
-
-      {/* 🟢 Botão flutuante do WhatsApp */}
+      {/* 🟢 Botão flutuante do WhatsApp — FORA do <main>, sempre visível */}
       <WhatsAppButton />
     </div>
   );
