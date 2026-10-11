@@ -22,10 +22,24 @@ function App() {
   ];
 
   return (
-    <div className="flex min-h-screen bg-slate-50 font-sans flex-col">
-      <main className="flex-1 min-h-screen w-full">
-        {/* HEADER SUPERIOR */}
-        <header className="sticky top-0 w-full bg-white border-b border-slate-100 z-50 px-8 h-20 shadow-sm">
+    <div className="relative min-h-screen bg-slate-50 font-sans">
+      {/* 🖼️ Imagem de fundo FIXA (não rola com a página) */}
+      <div
+        className="fixed inset-0 -z-20 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: 'url("/fundo_site.png")' }}
+        aria-hidden="true"
+      />
+
+      {/* 🌒 Overlay em GRADIENTE fixo — forte em cima, escuro embaixo */}
+      <div
+        className="fixed inset-0 -z-10 bg-gradient-to-b from-slate-950/40 via-slate-950/70 to-slate-950/95"
+        aria-hidden="true"
+      />
+
+      {/* Conteúdo rolável */}
+      <main className="relative flex-1 min-h-screen w-full">
+        {/* HEADER */}
+        <header className="sticky top-0 w-full bg-white/95 backdrop-blur border-b border-slate-100 z-50 px-8 h-20 shadow-sm">
           <div className="max-w-7xl mx-auto h-full flex items-center justify-between relative">
             <div
               className="flex items-center cursor-pointer z-10"
@@ -55,19 +69,10 @@ function App() {
 
         {activeService === 'home' ? (
           <div className="animate-in fade-in duration-700">
-            {/* HERO */}
             <Hero onNavigate={setActiveService} />
-
-            {/* NOSSOS SERVIÇOS */}
             <Services onNavigate={setActiveService} />
-
-            {/* FORMAS DE ALUMÍNIO */}
             <Approach />
-
-            {/* EXPERTISE TÉCNICA */}
             <Expertise />
-
-            {/* SERVIÇOS ESPECIALIZADOS */}
             <SpecialServices />
           </div>
         ) : (
@@ -76,7 +81,6 @@ function App() {
           </div>
         )}
 
-        {/* RODAPÉ */}
         <Footer />
       </main>
     </div>
