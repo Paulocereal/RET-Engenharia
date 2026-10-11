@@ -8,50 +8,51 @@ import SpecialServices from './components/SpecialServices';
 import ContentArea from './components/ContentArea';
 import Footer from './components/Footer';
 
-// Seções que existem DENTRO da home (rolam suavemente)
-const HOME_SECTIONS = ['services', 'approach', 'expertise', 'special-services'];
+// 🔗 Número do WhatsApp (sem "+" e sem espaços)
+const WHATSAPP_NUMBER = '551934332211';
+const WHATSAPP_MESSAGE = encodeURIComponent(
+  'Olá! Gostaria de fazer um orçamento com a RET-Engenharia.'
+);
+const WHATSAPP_LINK = `https://wa.me/${WHATSAPP_NUMBER}?text=${WHATSAPP_MESSAGE}`;
 
 interface NavItem {
   id: string;
   label: string;
-  target: string; // id da seção OU chave do ContentArea
+  target?: string;  // id da seção da home
+  link?: string;    // URL externa (abre em nova aba)
 }
 
 const topNavItems: NavItem[] = [
-  { id: 'home',          label: 'HOME',         target: 'home' },
-  { id: 'quem-somos',    label: 'QUEM SOMOS',   target: 'services' },
-  { id: 'produtos',      label: 'PRODUTOS',     target: 'services' },
-  { id: 'galeria',       label: 'GALERIA',      target: 'galeria' },
-  { id: 'blog',          label: 'BLOG',         target: 'blog' },
-  { id: 'faq',           label: 'FAQ',          target: 'faq' },
-  { id: 'contato',       label: 'CONTATO',      target: 'contato' },
+  { id: 'services',        label: 'NOSSO SERVIÇOS',         target: 'services' },
+  { id: 'approach',        label: 'FORMAS DE ALUMÍNIO',     target: 'approach' },
+  { id: 'expertise',       label: 'EXPERTISE TÉCNICA',      target: 'expertise' },
+  { id: 'special-services', label: 'SERVIÇOS ESPECIALIZADOS', target: 'special-services' },
+  { id: 'whatsapp',        label: 'WHATSAPP',               link: WHATSAPP_LINK },
 ];
 
 function App() {
   const [activeService, setActiveService] = useState('home');
 
   const handleNav = (item: NavItem) => {
-    // 1) HOME → volta ao topo
-    if (item.id === 'home') {
-      setActiveService('home');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
+    // WhatsApp / links externos → nova aba
+    if (item.link) {
+      window.open(item.link, '_blank', 'noopener,noreferrer');
       return;
     }
 
-    // 2) Seção da home → rola até ela
-    if (HOME_SECTIONS.includes(item.target)) {
+    // Seções da home → rola suavemente
+    if (item.target) {
       setActiveService('home');
-      // pequeno delay para garantir que a home renderizou
       setTimeout(() => {
         document
-          .getElementById(item.target)
+          .getElementById(item.target!)
           ?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 80);
-      return;
     }
+  };
 
-    // 3) Página separada → abre ContentArea
-    setActiveService(item.id);
+  const handleHome = () => {
+    setActiveService('home');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -74,28 +75,36 @@ function App() {
         {/* HEADER */}
         <header className="sticky top-0 w-full bg-white/95 backdrop-blur border-b border-slate-100 z-50 px-8 h-20 shadow-sm">
           <div className="max-w-7xl mx-auto h-full flex items-center justify-between relative">
+            {/* Logo → volta ao topo */}
             <div
               className="flex items-center cursor-pointer z-10"
-              onClick={() => handleNav(topNavItems[0])}
+              onClick={handleHome}
             >
               <img src="/logo-ret.png" alt="RET Engenharia" className="h-12 w-auto" />
             </div>
 
+            {/* Menu centralizado */}
             <nav className="hidden lg:flex absolute left-1/2 -translate-x-1/2 space-x-8">
-              {topNavItems.map((nav) => (
-                <button
-                  key={nav.id}
-                  onClick={() => handleNav(nav)}
-                  className={`text-xs font-black tracking-widest transition-all hover:text-blue-600 py-2 border-b-2 ${
-                    activeService === nav.id
-                      ? 'text-blue-600 border-blue-600'
-                      : 'text-slate-600 border-transparent'
-                  }`}
-                >
-                  {nav.label}
-                </button>
-              ))}
+              {topNavItems.map((nav) => {
+                const isWhats = nav.id === 'whatsapp';
+                return (
+                  <button
+                    key={nav.id}
+                    onClick={() => handleNav(nav)}
+                    className={`text-xs font-black tracking-widest transition-all py-2 border-b-2 ${
+                      isWhats
+                        ? 'text-green-600 border-transparent hover:text-green-500 hover:border-green-500'
+                        : activeService === nav.id
+                        ? 'text-blue-600 border-blue-600'
+                        : 'text-slate-600 border-transparent hover:text-blue-600'
+                    }`}
+                  >
+                    {nav.label}
+                  </button>
+                );
+              })}
             </nav>
+
             <div className="hidden lg:block w-[150px]"></div>
           </div>
         </header>
