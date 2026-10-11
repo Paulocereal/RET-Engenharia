@@ -5,7 +5,6 @@ interface SpecialItem {
   text: string;
 }
 
-// ⚠️ Troque os `img` pelos arquivos corretos quando subir.
 const specials: SpecialItem[] = [
   {
     img: '/IM 1.jpg',
@@ -47,9 +46,9 @@ const specials: SpecialItem[] = [
 
 export default function SpecialServices() {
   return (
-    <section id="special-services" className="bg-slate-100 py-16 lg:py-20">
+    <section id="special-services" className="py-16 lg:py-20">
       <div className="max-w-7xl mx-auto px-6">
-        <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-slate-800 text-center">
+        <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-white text-center drop-shadow-lg">
           Serviços Especializados
         </h2>
         <div className="w-20 h-1.5 bg-blue-600 mx-auto mt-4 rounded-full"></div>
@@ -58,9 +57,9 @@ export default function SpecialServices() {
           {specials.map((item, index) => (
             <article
               key={index}
-              className="group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 transition-all duration-300"
+              className="group bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden border border-white/15 hover:border-blue-400/60 shadow-lg hover:shadow-2xl hover:bg-white/15 transition-all duration-300"
             >
-              <div className="h-52 overflow-hidden bg-slate-200">
+              <div className="h-52 overflow-hidden bg-slate-800">
                 <img
                   src={item.img}
                   alt={item.alt}
@@ -68,10 +67,10 @@ export default function SpecialServices() {
                 />
               </div>
               <div className="p-6">
-                <h3 className="text-base font-bold text-slate-800 leading-snug">
+                <h3 className="text-base font-bold text-white leading-snug">
                   {item.title}
                 </h3>
-                <p className="mt-3 text-sm text-slate-500 leading-relaxed">
+                <p className="mt-3 text-sm text-slate-300 leading-relaxed">
                   {item.text}
                 </p>
               </div>
