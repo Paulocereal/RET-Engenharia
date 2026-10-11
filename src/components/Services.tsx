@@ -1,75 +1,84 @@
-import React from 'react';
-import { Layers, ShieldAlert, Building2, Zap, Settings } from 'lucide-react';
-
 interface ServicesProps {
   onNavigate: (id: string) => void;
 }
 
-const services = [
-  { 
-    icon: Layers, 
-    title: 'Projetos de Modulação de Formas', 
-    description: 'Otimização e detalhamento de sistemas de fôrmas para construção civil.', 
-    id: 'modulacao' 
+interface ServiceItem {
+  img: string;
+  alt: string;
+  title: string;
+  text: string;
+  target: string;
+}
+
+const services: ServiceItem[] = [
+  {
+    img: '/IM 1.jpg', // trocar por /servico-1.jpg quando subir
+    alt: 'Projeto de Modulação de Formas de Alumínio',
+    title: 'Projeto de Modulação de Formas de Alumínio',
+    text: 'Projetos de alta precisão para estruturas e formas de alumínio, garantindo desempenho, segurança e racionalização de materiais.',
+    target: 'modulacao',
   },
-  { 
-    icon: ShieldAlert, 
-    title: 'Projeto de Sistemas de Segurança', 
-    description: 'Laudos de conformidade, análise de risco e proteção industrial.', 
-    id: 'seguranca' 
+  {
+    img: '/IM 2.jpg', // trocar por /servico-2.jpg
+    alt: 'Sistemas de Segurança e Linha de Vida',
+    title: 'Sistemas de Segurança e Linha de Vida',
+    text: 'Sistemas elétricos de alta performance, focados na segurança, continuidade operacional e conformidade com normas técnicas.',
+    target: 'seguranca',
   },
-  { 
-    icon: Building2, 
-    title: 'Projetos Estruturais de Concreto Armado', 
-    description: 'Cálculo e dimensionamento de estruturas com foco em estabilidade e segurança.', 
-    id: 'estruturais' 
+  {
+    img: '/IM 3.jpg', // trocar por /servico-3.jpg
+    alt: 'Projeto de Estrutura Metálica',
+    title: 'Projeto de Estrutura Metálica',
+    text: 'Soluções de proteção contra incêndio e evacuação, integradas ao projeto estrutural para máxima segurança.',
+    target: 'mecanicos',
   },
-  { 
-    icon: Zap, 
-    title: 'Projetos de Instalações Elétricas e Hidráulicas', 
-    description: 'Projetos integrados de infraestrutura para residências e indústrias.', 
-    id: 'eletrica-hidraulica' 
-  },
-  { 
-    icon: Settings, 
-    title: 'Projetos Mecânicos em Geral (Estruturas Metálicas)', 
-    description: 'Desenvolvimento e inspeção de estruturas metálicas e sistemas mecânicos.', 
-    id: 'mecanicos' 
+  {
+    img: '/inspecao.jpg', // trocar por /servico-4.jpg
+    alt: 'Projetos Mecânicos',
+    title: 'Projetos Mecânicos',
+    text: 'Análise de estruturas e sistemas mecânicos para garantir eficiência, durabilidade e redução de falhas.',
+    target: 'eletrica-hidraulica',
   },
 ];
 
 export default function Services({ onNavigate }: ServicesProps) {
   return (
-    <section id="services" className="py-20 px-4 sm:px-6 lg:px-8 bg-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <span className="text-blue-600 font-semibold text-sm uppercase tracking-wide">Nossos Serviços</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-slate-900 mt-3 mb-4">Soluções Completas em Engenharia</h2>
-        </div>
+    <section id="services" className="max-w-7xl mx-auto px-6 py-16 lg:py-20">
+      <h2 className="text-3xl md:text-4xl font-black uppercase tracking-tight text-slate-800 text-center">
+        Nossos Serviços
+      </h2>
+      <div className="w-20 h-1.5 bg-blue-600 mx-auto mt-4 rounded-full"></div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => {
-            const Icon = service.icon;
-            return (
-              <button 
-                key={index}
-                onClick={() => onNavigate(service.id)}
-                className="block text-left group h-full focus:outline-none"
+      <div className="mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {services.map((service, index) => (
+          <article
+            key={index}
+            className="group flex flex-col bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl border border-slate-100 transition-all duration-300"
+          >
+            <div className="h-48 overflow-hidden bg-slate-100">
+              <img
+                src={service.img}
+                alt={service.alt}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+
+            <div className="flex flex-col flex-1 p-6">
+              <h3 className="text-base font-bold text-slate-800 leading-snug">
+                {service.title}
+              </h3>
+              <p className="mt-3 text-sm text-slate-500 leading-relaxed flex-1">
+                {service.text}
+              </p>
+              <button
+                onClick={() => onNavigate(service.target)}
+                className="mt-6 self-start px-5 py-2.5 rounded-full border-2 border-blue-600 text-blue-600 text-xs font-black uppercase tracking-widest hover:bg-blue-600 hover:text-white transition-colors"
               >
-                <div className="bg-gradient-to-br from-slate-50 to-blue-50 p-8 rounded-xl hover:shadow-xl transition-all duration-300 border border-slate-200 hover:border-blue-300 h-full flex flex-col">
-                  <div className="bg-blue-600 w-14 h-14 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-lg">
-                    <Icon className="text-white" size={28} />
-                  </div>
-                  <h3 className="text-xl font-bold text-slate-900 mb-3">{service.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{service.description}</p>
-                  <div className="mt-auto pt-6 text-blue-600 font-bold text-sm flex items-center group-hover:translate-x-2 transition-transform">
-                    SAIBA MAIS →
-                  </div>
-                </div>
+                Saber Mais
               </button>
-            );
-          })}
-        </div>
+            </div>
+          </article>
+        ))}
       </div>
     </section>
   );
