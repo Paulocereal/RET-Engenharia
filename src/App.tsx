@@ -9,7 +9,7 @@ import ContentArea from './components/ContentArea';
 import Footer from './components/Footer';
 
 // 🔗 Número do WhatsApp (sem "+" e sem espaços)
-const WHATSAPP_NUMBER = '551934332211';
+const WHATSAPP_NUMBER = '553193056056;
 const WHATSAPP_MESSAGE = encodeURIComponent(
   'Olá! Gostaria de fazer um orçamento com a RET-Engenharia.'
 );
