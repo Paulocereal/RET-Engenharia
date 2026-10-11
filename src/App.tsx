@@ -26,7 +26,7 @@ function App() {
       {/* 🖼️ Imagem de fundo FIXA (não rola com a página) */}
       <div
         className="fixed inset-0 -z-20 bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: 'url("/fundo_site.png")' }}
+        style={{ backgroundImage: 'url("/fundo.jpg")' }}
         aria-hidden="true"
       />
 
